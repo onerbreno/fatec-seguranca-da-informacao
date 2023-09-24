@@ -1,26 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define ql 26
+#define ql 94
 
+// Função para criptografar a mensagem usando a cifra de César
 void cripto(char msg[], int chave) 
 {
-    for (int i = 0; i < strlen(msg); i++) 
+    for (int i = 0; i < strlen(msg)-1; i++) 
 	{
-        if (msg[i] >= 'a' && msg[i] <= 'z') 
-		{
-            msg[i] = 'a' + (msg[i] - 'a' + chave) % ql;
-        } 
-		else if (msg[i] >= 'A' && msg[i] <= 'Z') 
-		{
-            msg[i] = 'A' + (msg[i] - 'A' + chave) % ql;
-        }
+            msg[i] = '!' + (msg[i] - '!' + chave) % ql;
     }
 }
 
+// Função para descriptografar a mensagem usando a cifra de César
 void descripto(char msg[], int chave) 
 {
     cripto(msg, ql - chave); 
+	// A decifração é simplesmente a cifra com a chave complementar
 }
 
 main() 
